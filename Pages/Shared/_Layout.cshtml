@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SupermarketWEB.styles.css" asp-append-version="true" />
 </head>
+@{
+    var isAdmin = User.IsInRole("Admin");
+}
+@{
+    var isuser = User.IsInRole("User");
+}
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -17,52 +23,72 @@
                     SupermarketWEB
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">
-                                <img src="~/images/home.png" alt="Home Icon" style="height: 30px; vertical-align: middle; margin-right: 5px;" />
-                                Home
+                            @if (isAdmin || isuser)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Index">
+                                    <img src="~/images/home.png" alt="Home Icon" style="height: 30px; vertical-align: middle; margin-right: 5px;" />
+                                    Home
                                 </a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">
-                                <img src="~/images/Categories.png" alt="Home Icon" style="height: 28px; vertical-align: middle; margin-right: 5px;" />
-                                Categories
-                            </a>
+                            @if (isAdmin || isuser)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Categories/Index">
+                                    <img src="~/images/Categories.png" alt="Home Icon" style="height: 28px; vertical-align: middle; margin-right: 5px;" />
+                                    Categories
+                                </a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">
-                                <img src="~/images/Products.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
-                                Products
-                            </a>
+                            @if (isAdmin || isuser)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">
+                                    <img src="~/images/Products.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
+                                    Products
+                                </a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/PayModes/Index">
-                                <img src="~/images/PayModes.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
-                                PayModes
-                            </a>
+                            @if (isAdmin || isuser)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/PayModes/Index">
+                                    <img src="~/images/PayModes.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
+                                    PayModes
+                                </a>
+                            }
                         </li>
-						<li class="nav-item">
-							<a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">
-                                <img src="~/images/Customers1.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
-                                Customers
-                            </a>
-						</li>
+                        <li class="nav-item">
+                            @if (isAdmin){
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Index">
+                                    <img src="~/images/Customers1.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
+                                    Customers
+                                </a>
+                            }
+                        </li>
                         <li class="nav_item">
-							<a class="nav-link text-dark" asp-area="" asp-page="/Users/Index">
-								<img src="~/images/Users.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
-								Users
-							</a>
+                            @if (isAdmin)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Users/Index">
+                                    <img src="~/images/Users.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
+                                    Users
+                                </a>
+                            }
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">
-                                <img src="~/images/Privacy.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
-                                Privacy
-                            </a>
+                            @if (isAdmin || isuser)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">
+                                    <img src="~/images/Privacy.png" alt="Home Icon" style="height: 35px; vertical-align: middle; margin-right: 5px;" />
+                                    Privacy
+                                </a>
+                            }
                         </li>
                     </ul>
                 </div>
